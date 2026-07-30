@@ -16,7 +16,7 @@ def read_label(
     of a microsoft document previously classified with the sensitivity label.
     This label_id can be used to apply the same sensitivity label to other
     documents.
-    It relies on the 'Get-AIPFileStatus' powershell tool. To understand it
+    It relies on the 'Get-FileStatus' powershell tool. To understand it
     better try running the command directly in powershell or look for the
     official Microsoft documentation.
     By default this function only returns the label_id, but if you want to see
@@ -25,7 +25,7 @@ def read_label(
     # The command to call in powershell. It includes the powershell tool
     # 'ConvertTo-Json' to make it easier to process the results in Python,
     # specially when the file path is too long, which may break lines.
-    command = f"Get-AIPFileStatus -path '{filepath}' | ConvertTo-Json"
+    command = f"Get-FileStatus -path '{filepath}' | ConvertTo-Json"
     # Executing it
     result = subprocess.Popen([powershell, command], stdout=subprocess.PIPE)
     result_lines = result.stdout.readlines()
