@@ -69,14 +69,14 @@ def apply_label(
     """
     start = time.time()
     # The command to call in powershell
-    command = f"(Set-AIPFileLabel -path '{filepath}' -LabelId '{label_id}').Status.ToString()"
+    command = f"(Set-FileLabel -path '{filepath}' -LabelId '{label_id}').Status.ToString()"
     # Executing it
     result = subprocess.Popen([powershell, command], stdout=subprocess.PIPE)
     result_message = (
         result.stdout.readline().decode(stdout_encoding).rstrip('\r\n')
     )
     # If the command is not successful, raises an exception and display the
-    #  message from 'Set-AIPFileLabel' tool
+    #  message from 'Set-FileLabel' tool
     if result_message != 'Success':
         raise Exception(result_message)
     end = time.time()
